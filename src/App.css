@@ -89,16 +89,32 @@ a {
 }
 
 .greenBtn {
-  color: white !important;
-  background-color: green !important;
+  color: black !important;
+  background-color: #e7e7e7 !important;
   margin-right: 1.5rem !important;
   margin-top: 1.5rem !important;
-  border: 1px solid rgb(97, 97, 97) !important;
+  /* border: 1px solid rgb(97, 97, 97) !important; */
+}
+
+.selected-btn {
+  border: 2px solid rgb(36, 165, 201) !important;
+  color: black !important;
+  background-color: #e7e7e7 !important;
+  margin-right: 1.5rem !important;
+  margin-top: 1.5rem !important;
+}
+
+.btn {
+  color: black !important;
+  background-color: #e7e7e7 !important;
+  margin-right: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  border: 2px solid transparent !important;
 }
 
 .redBtn {
-  color: white !important;
-  background-color: red !important;
+  color: black !important;
+  background-color: #e7e7e7 !important;
   margin-left: 1.5rem !important;
   margin-top: 1.5rem !important;
   border: 1px solid rgb(97, 97, 97) !important;
@@ -181,6 +197,11 @@ a {
   color: white !important;
   margin-top: 7rem !important;
   margin-bottom: 5rem !important;
+  padding: 8px !important;
+}
+
+CircularProgress {
+  margin-left: 4px !important;
 }
 
 .lowerContent__section1,

@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Slider from "./Slider";
-import { Button, Checkbox, CircularProgress } from "@material-ui/core";
+import {
+  Button,
+  Checkbox,
+  CircularProgress,
+  Backdrop,
+} from "@material-ui/core";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
@@ -84,301 +89,299 @@ const Screen3 = ({ dataNeededFromOtherComponent }) => {
     setIsSubmitting(true);
     postMockApi().then(() => {
       setIsSubmitting(false);
-      navigation.push('/imageList')
+      navigation.push("/imageslist");
     });
   };
 
   return (
-    <div className="screen3">
-      {show && (
-        <CustomAlert
-          alertMessage="If you proceed, all changes will be lost!"
-          cancelBtn={
-            <Cancel
-              onClick={() => {
-                setShow(false);
-              }}
-              className="alert__close"
+    <>
+      <div className="screen3">
+        {show && (
+          <CustomAlert
+            alertMessage="If you proceed, all changes will be lost!"
+            cancelBtn={
+              <Cancel
+                onClick={() => {
+                  setShow(false);
+                }}
+                className="alert__close"
+              />
+            }
+            redirectURL={redirectLink}
+          />
+        )}
+        <div
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          data-aos-delay="250"
+          data-aos-easing="ease-out"
+          className="screen3__btnsSection "
+        >
+          <Button
+            onClick={() => {
+              setRedirectLink("/");
+              setShow(true);
+            }}
+            variant="outlined"
+            id="screen1__btn1"
+          >
+            Back to Dashboard
+          </Button>
+          <Button
+            onClick={() => {
+              setRedirectLink("/imageslist");
+              setShow(true);
+            }}
+            variant="outlined"
+            id="screen1__btn2"
+          >
+            Back to ImagesList
+          </Button>
+        </div>
+        <div onClick={() => setShow(false)} className="screen3__lowerContent">
+          {/* Section 1 */}
+
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="800"
+            data-aos-easing="ease-out"
+            className="lowerContent__section1"
+          >
+            <h3 className="section__taglines">Is this image usefull?</h3>
+            <img className="screen3__image" src={importedData?.link1} />
+            <div className="section1__btns">
+              <div className="inputYes">
+                <span>Yes</span>
+                <Checkbox
+                  checked={Yeschecked}
+                  onChange={(event) => {
+                    setYesChecked(event.target.checked);
+                    setNoChecked(false);
+                    setImageValue("YES");
+                  }}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
+              </div>
+              <div className="inputNo">
+                <span>No</span>
+                <Checkbox
+                  checked={Nochecked}
+                  onChange={(event) => {
+                    setNoChecked(event.target.checked);
+                    setYesChecked(false);
+                    setImageValue("NO");
+                  }}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Section 2 */}
+
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="250"
+            data-aos-easing="ease-out"
+            className="lowerContent__section2"
+          >
+            <h3 className="section__taglines">Is there a mark?</h3>
+            <img
+              className="screen3__image"
+              src={importedData?.link2}
+              alt="Image is missing"
             />
-          }
-          redirectURL={redirectLink}
-        />
-      )}
-      <div
-        data-aos="fade-down"
-        data-aos-duration="1000"
-        data-aos-delay="250"
-        data-aos-easing="ease-out"
-        className="screen3__btnsSection "
-      >
-        <Button
-          onClick={() => {
-            setRedirectLink("/");
-            setShow(true);
-          }}
-          variant="outlined"
-          id="screen1__btn1"
-        >
-          Back to Dashboard
-        </Button>
-        <Button
-          onClick={() => {
-            setRedirectLink("/imageslist");
-            setShow(true);
-          }}
-          variant="outlined"
-          id="screen1__btn2"
-        >
-          Back to ImagesList
-        </Button>
-      </div>
-      <div onClick={() => setShow(false)} className="screen3__lowerContent">
-        {/* Section 1 */}
-
-        <div
-          data-aos="fade-right"
-          data-aos-duration="1000"
-          data-aos-delay="800"
-          data-aos-easing="ease-out"
-          className="lowerContent__section1"
-        >
-          <h3 className="section__taglines">Is this image usefull?</h3>
-          <img className="screen3__image" src={importedData?.link1} />
-          <div className="section1__btns">
-            <div className="inputYes">
-              <span>Yes</span>
-              <Checkbox
-                checked={Yeschecked}
-                onChange={(event) => {
-                  setYesChecked(event.target.checked);
-                  setNoChecked(false);
-                  setImageValue("YES");
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              />
-            </div>
-            <div className="inputNo">
-              <span>No</span>
-              <Checkbox
-                checked={Nochecked}
-                onChange={(event) => {
-                  setNoChecked(event.target.checked);
-                  setYesChecked(false);
-                  setImageValue("NO");
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              />
+            <div className="section1__btns">
+              <div className="inputYes">
+                <span>Yes</span>
+                <Checkbox
+                  checked={Yeschecked}
+                  onChange={(event) => {
+                    setYesChecked(event.target.checked);
+                    setNoChecked(false);
+                    setMarkAvailibility("YES");
+                  }}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
+              </div>
+              <div className="inputNo">
+                <span>No</span>
+                <Checkbox
+                  checked={Nochecked}
+                  onChange={(event) => {
+                    setNoChecked(event.target.checked);
+                    setYesChecked(false);
+                    setMarkAvailibility("NO");
+                  }}
+                  inputProps={{ "aria-label": "primary checkbox" }}
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Section 2 */}
+          {/* Section 3 */}
 
-        <div
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="250"
-          data-aos-easing="ease-out"
-          className="lowerContent__section2"
-        >
-          <h3 className="section__taglines">Is there a mark?</h3>
-          <img
-            className="screen3__image"
-            src={importedData?.link2}
-            alt="Image is missing"
-          />
-          <div className="section1__btns">
-            <div className="inputYes">
-              <span>Yes</span>
-              <Checkbox
-                checked={Yeschecked}
-                onChange={(event) => {
-                  setYesChecked(event.target.checked);
-                  setNoChecked(false);
-                  setMarkAvailibility("YES");
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              />
-            </div>
-            <div className="inputNo">
-              <span>No</span>
-              <Checkbox
-                checked={Nochecked}
-                onChange={(event) => {
-                  setNoChecked(event.target.checked);
-                  setYesChecked(false);
-                  setMarkAvailibility("NO");
-                }}
-                inputProps={{ "aria-label": "primary checkbox" }}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Section 3 */}
-
-        <div
-          data-aos="fade-right"
-          data-aos-duration="1000"
-          data-aos-delay="250"
-          data-aos-easing="ease-out"
-          className="lowerContent__section3"
-        >
-          <h3 className="section__taglines">How many marks did we miss?</h3>
-          <img
-            className="screen3__image"
-            src={importedData?.link3}
-            alt="Image is missing"
-          />
-          <div className="section3__inpusFeild">
-            <input
-              id="inputFeild"
-              value={marksValue}
-              onChange={(e) => setMarksValue(e.target.value)}
-              type="text"
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="250"
+            data-aos-easing="ease-out"
+            className="lowerContent__section3"
+          >
+            <h3 className="section__taglines">How many marks did we miss?</h3>
+            <img
+              className="screen3__image"
+              src={importedData?.link3}
+              alt="Image is missing"
             />
-            <Button id="section3__submitBtn">Submit</Button>
+            <div className="section3__inpusFeild">
+              <input
+                id="inputFeild"
+                value={marksValue}
+                onChange={(e) => setMarksValue(e.target.value)}
+                type="text"
+              />
+              <Button id="section3__submitBtn">Submit</Button>
+            </div>
           </div>
-        </div>
 
-        {/* Section 4 */}
+          {/* Section 4 */}
 
-        <div
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="250"
-          data-aos-easing="ease-out"
-          className="lowerContent__section4"
-        >
-          <h3 className="section__taglines ">
-            Is this location tag correctly identified ?
-          </h3>
-          <img
-            className="screen3__image"
-            src={importedData?.link4}
-            alt="Image is missing"
-          />
-          <div className="section4__btns">
-            <Button
-              onClick={() => {
-                setLocationTagIdentity("YES");
-              }}
-              className="greenBtn"
-              id="section2__yesBtn"
-            >
-              Yes
-            </Button>
-            {/* {importedData[1]?.objKey2 && <span>{importedData[1].objKey2}</span>} */}
-            <Button
-              onClick={() => {
-                setLocationTagIdentity("NO");
-              }}
-              className="redBtn"
-              id="section2__noBtn"
-            >
-              No
-            </Button>
-          </div>
-        </div>
-
-        <div
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="250"
-          data-aos-easing="ease-out"
-          className="lowerContent__sectionNew"
-        >
-          <h3 className="section__taglines section__taglineSlider">
-            Is this tag correctly identified ?
-          </h3>
-          <div className="scrollable__div">
-            <img src={sliderImages[0]} alt="" />
-
-            <div className="imageFeedbackSec">
-              {slideIndexOne}
-
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="250"
+            data-aos-easing="ease-out"
+            className="lowerContent__section4"
+          >
+            <h3 className="section__taglines ">
+              Is this location tag correctly identified ?
+            </h3>
+            <img
+              className="screen3__image"
+              src={importedData?.link4}
+              alt="Image is missing"
+            />
+            <div className="section4__btns">
               <Button
                 onClick={() => {
-                  setTagIdentityOne("YES");
-                  setSlideIndexOne(0);
+                  setLocationTagIdentity("YES");
                 }}
-                className="greenBtn"
+                className={
+                  locationTagIdentity === "YES" ? "selected-btn" : "btn"
+                }
                 id="section2__yesBtn"
               >
                 Yes
               </Button>
+              {/* {importedData[1]?.objKey2 && <span>{importedData[1].objKey2}</span>} */}
               <Button
                 onClick={() => {
-                  setTagIdentityOne("NO");
-                  setSlideIndexOne(0);
+                  setLocationTagIdentity("NO");
                 }}
-                className="redBtn"
+                className={
+                  locationTagIdentity === "NO" ? "selected-btn" : "btn"
+                }
                 id="section2__noBtn"
               >
                 No
               </Button>
-              {tagIdentityOne}
-            </div>
-            <img src={sliderImages[1]} alt="" />
-
-            <div className="imageFeedbackSec">
-              {slideIndex2}
-              <Button
-                onClick={() => {
-                  setTagIdentity2("YES");
-                  setSlideIndex2(1);
-                }}
-                className="greenBtn"
-                id="section2__yesBtn"
-              >
-                Yes
-              </Button>
-
-              <Button
-                onClick={() => {
-                  setTagIdentity2("NO");
-                  setSlideIndex2(1);
-                }}
-                className="redBtn"
-                id="section2__noBtn"
-              >
-                No
-              </Button>
-              {tagIdentity2}
-            </div>
-
-            <img src={sliderImages[2]} alt="" />
-
-            <div className="imageFeedbackSec">
-              {slideIndex3}
-              <Button
-                onClick={() => {
-                  setTagIdentity3("YES");
-                  setSlideIndex3(2);
-                }}
-                className="greenBtn"
-                id="section2__yesBtn"
-              >
-                Yes
-              </Button>
-
-              <Button
-                onClick={() => {
-                  setTagIdentity3("NO");
-                  setSlideIndex3(2);
-                }}
-                className="redBtn"
-                id="section2__noBtn"
-              >
-                No
-              </Button>
-              {tagIdentity3}
             </div>
           </div>
-        </div>
 
-        {/* Section 5 */}
-        {/* <div className="sliderSection__wrapper">
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="250"
+            data-aos-easing="ease-out"
+            className="lowerContent__sectionNew"
+          >
+            <h3 className="section__taglines section__taglineSlider">
+              Is this tag correctly identified ?
+            </h3>
+            <div className="scrollable__div">
+              <img src={sliderImages[0]} alt="" />
+
+              <div className="imageFeedbackSec">
+                <Button
+                  onClick={() => {
+                    setTagIdentityOne("YES");
+                    setSlideIndexOne(0);
+                  }}
+                  className={tagIdentityOne === "YES" ? "selected-btn" : "btn"}
+                  id="section2__yesBtn"
+                >
+                  Yes
+                </Button>
+                <Button
+                  onClick={() => {
+                    setTagIdentityOne("NO");
+                    setSlideIndexOne(0);
+                  }}
+                  className={tagIdentityOne === "NO" ? "selected-btn" : "btn"}
+                  id="section2__noBtn"
+                >
+                  No
+                </Button>
+              </div>
+              <img src={sliderImages[1]} alt="" />
+
+              <div className="imageFeedbackSec">
+                <Button
+                  onClick={() => {
+                    setTagIdentity2("YES");
+                    setSlideIndex2(1);
+                  }}
+                  className={tagIdentity2 === "YES" ? "selected-btn" : "btn"}
+                  id="section2__yesBtn"
+                >
+                  Yes
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    setTagIdentity2("NO");
+                    setSlideIndex2(1);
+                  }}
+                  className={tagIdentity2 === "NO" ? "selected-btn" : "btn"}
+                  id="section2__noBtn"
+                >
+                  No
+                </Button>
+              </div>
+
+              <img src={sliderImages[2]} alt="" />
+
+              <div className="imageFeedbackSec">
+                <Button
+                  onClick={() => {
+                    setTagIdentity3("YES");
+                    setSlideIndex3(2);
+                  }}
+                  className={tagIdentity3 === "YES" ? "selected-btn" : "btn"}
+                  id="section2__yesBtn"
+                >
+                  Yes
+                </Button>
+
+                <Button
+                  onClick={() => {
+                    setTagIdentity3("NO");
+                    setSlideIndex3(2);
+                  }}
+                  className={tagIdentity3 === "NO" ? "selected-btn" : "btn"}
+                  id="section2__noBtn"
+                >
+                  No
+                </Button>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 5 */}
+          {/* <div className="sliderSection__wrapper">
           <h3 className="section__taglines slider__tagline">
             Is this tag correctly identified ?
           </h3>
@@ -496,51 +499,66 @@ const Screen3 = ({ dataNeededFromOtherComponent }) => {
           )}
         </div> */}
 
-        {/* Section 6 */}
+          {/* Section 6 */}
 
-        <div
-          data-aos="fade-left"
-          data-aos-duration="1000"
-          data-aos-delay="380"
-          data-aos-easing="ease-out"
-          className="lowerContent__section6"
-        >
-          <h3 className="section__taglines">We don’t see SQ, are we right?</h3>
-          <img
-            className="screen3__image"
-            className="screen3__image"
-            src={importedData?.link5}
-            alt="Image is missing"
-          />
-          <div className="section6__btns">
-            <Button
-              onClick={() => {
-                setSqPresence("YES");
-              }}
-              className="greenBtn"
-              id="section6__yesBtn"
-            >
-              Yes
-            </Button>
-            <Button
-              onClick={() => {
-                setSqPresence("NO");
-              }}
-              className="redBtn"
-              id="section6__noBtn"
-            >
-              No
-            </Button>
+          <div
+            data-aos="fade-left"
+            data-aos-duration="1000"
+            data-aos-delay="380"
+            data-aos-easing="ease-out"
+            className="lowerContent__section6"
+          >
+            <h3 className="section__taglines">
+              We don’t see SQ, are we right?
+            </h3>
+            <img
+              className="screen3__image"
+              className="screen3__image"
+              src={importedData?.link5}
+              alt="Image is missing"
+            />
+            <div className="section6__btns">
+              <Button
+                onClick={() => {
+                  setSqPresence("YES");
+                }}
+                className={sqPresence === "YES" ? "selected-btn" : "btn"}
+                id="section6__yesBtn"
+              >
+                Yes
+              </Button>
+              <Button
+                onClick={() => {
+                  setSqPresence("NO");
+                }}
+                className={sqPresence === "NO" ? "selected-btn" : "btn"}
+                id="section6__noBtn"
+              >
+                No
+              </Button>
+            </div>
           </div>
+          {/* <Link to="imageslist"> */}
+          <Button
+            className="submit__btn"
+            variant="outlined"
+            onClick={onPressSubmit}
+          >
+            <span>Submit</span>
+          </Button>
+          {/* </Link> */}
         </div>
-        {/* <Link to="imageslist"> */}
-        <Button className="submit__btn" variant="outlined">
-          <span>Submit</span>
-          <CircularProgress />
-        </Button>
-        {/* </Link> */}
       </div>
-    </div>
+      <Backdrop
+        style={{
+          zIndex: 1,
+          color: "#fff",
+        }}
+        open={isSubmitting}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
   );
 };
 
