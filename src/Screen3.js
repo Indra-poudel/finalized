@@ -112,8 +112,6 @@ const Screen3 = ({ dataNeededFromOtherComponent }) => {
         )}
         <div
           data-aos="fade-down"
-          data-aos-duration="1000"
-          data-aos-delay="250"
           data-aos-easing="ease-out"
           className="screen3__btnsSection "
         >
@@ -143,8 +141,6 @@ const Screen3 = ({ dataNeededFromOtherComponent }) => {
 
           <div
             data-aos="fade-right"
-            data-aos-duration="1000"
-            data-aos-delay="800"
             data-aos-easing="ease-out"
             className="lowerContent__section1"
           >
@@ -182,8 +178,6 @@ const Screen3 = ({ dataNeededFromOtherComponent }) => {
 
           <div
             data-aos="fade-left"
-            data-aos-duration="1000"
-            data-aos-delay="250"
             data-aos-easing="ease-out"
             className="lowerContent__section2"
           >

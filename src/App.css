@@ -18,9 +18,13 @@ a {
 
 .screen1 {
   width: 100%;
-  align-items: center;
+  height: 100vh;
   display: flex;
   justify-content: center;
+  background-image: url("./assets/images/image.jpg");
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .btns__container {

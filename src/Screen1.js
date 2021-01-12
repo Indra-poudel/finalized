@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
+import { image } from "./assets/images";
 
 const Screen1 = () => {
   return (

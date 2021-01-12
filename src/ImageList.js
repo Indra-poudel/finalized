@@ -5,10 +5,11 @@ import Modal from "@material-ui/core/Modal";
 import { Link } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { Button } from "@material-ui/core";
+import { Button, Backdrop, CircularProgress } from "@material-ui/core";
 
 class ImageList extends Component {
   state = {
+    isLoading: true,
     rowsPerPage: 5,
     page: 0,
     index: 0,
@@ -53,8 +54,11 @@ class ImageList extends Component {
             images: images,
             selectedImages: images.slice(0, 5),
           });
+        })
+        .finally(() => {
+          this.setState({ isLoading: false });
         }); // call setImages to update images state with image urls
-    }, 0);
+    }, 2000);
   };
 
   slideLeft = () => {
@@ -101,15 +105,10 @@ class ImageList extends Component {
   };
   render() {
     const { selectedImages } = this.state;
-    return (
-      this.state.images.length > 0 && (
-        <div
-          data-aos="fade-up"
-          data-aos-duration="800"
-          data-aos-delay="600"
-          data-aos-easing="ease-out"
-          style={{ margin: 50 }}
-        >
+
+    if (this.state.isLoading) {
+      return (
+        <div style={{ margin: 50 }}>
           <div style={styles.contentWrapper}>
             <TextField
               id="date"
@@ -134,7 +133,7 @@ class ImageList extends Component {
             />
           </div>
           <div style={styles.imagesContianer}>
-            {selectedImages.map((image, index) => (
+            {[...Array(7)].map((image, index) => (
               <div
                 className="image__container"
                 key={index}
@@ -160,18 +159,19 @@ class ImageList extends Component {
                     width: "100%",
                   }}
                 >
-                  <img
-                    className="screen2__image"
-                    onClick={(event) => this.handleShowDialog(image, index)}
-                    style={styles.mainImage}
-                    src={image}
-                    alt={index}
-                  />
-                  <Link
-                    to="/screen3"
-                    onClick={() => {
-                      this.onSetterClick(this.state.dataToBeTransfered);
+                  <div
+                    style={{
+                      width: 250,
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
+                  >
+                    <CircularProgress color="black" />
+                  </div>
+
+                  <Link
+                    onClick={() => {}}
                     style={{
                       display: "flex",
                       flexDirection: "column",
@@ -192,34 +192,123 @@ class ImageList extends Component {
                 </div>
               </div>
             ))}
-
-            <Modal
-              open={this.state.isOpen}
-              onClose={this.handleClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-            >
-              <img
-                style={{
-                  width: 500,
-                  marginTop: "10%",
-                  marginLeft: "30%",
-                }}
-                src={this.state.dialogueImage}
-                alt={this.state.dialogueIndex}
-              />
-            </Modal>
           </div>
-          <TablePagination
-            rowsPerPageOptions={[5]}
-            component="div"
-            count={this.state.images.length}
-            rowsPerPage={this.state.rowsPerPage}
-            page={this.state.page}
-            onChangePage={this.handleChangePage}
+        </div>
+      );
+    }
+
+    return (
+      <div style={{ margin: 50 }}>
+        <div style={styles.contentWrapper}>
+          <TextField
+            id="date"
+            label="Start Date"
+            type="date"
+            margin="dense"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            style={{
+              marginRight: 20,
+            }}
+          />
+          <TextField
+            id="date"
+            label="End Date"
+            type="date"
+            margin="dense"
+            InputLabelProps={{
+              shrink: true,
+            }}
           />
         </div>
-      )
+        <div style={styles.imagesContianer}>
+          {selectedImages.map((image, index) => (
+            <div
+              className="image__container"
+              key={index}
+              style={{
+                marginTop: 10,
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                alignItems: "space-between",
+                border: "solid",
+                borderColor: "rgb(216, 216, 216)",
+                borderWidth: 1,
+              }}
+            >
+              <div
+                style={{
+                  marginTop: 10,
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  width: "100%",
+                }}
+              >
+                <img
+                  className="screen2__image"
+                  onClick={(event) => this.handleShowDialog(image, index)}
+                  style={styles.mainImage}
+                  src={image}
+                  alt={index}
+                />
+
+                <Link
+                  to="/screen3"
+                  onClick={() => {
+                    this.onSetterClick(this.state.dataToBeTransfered);
+                  }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "end",
+                    width: "100%",
+                    alignItems: "space-between",
+                  }}
+                >
+                  <div className="texts__section">
+                    <p class="text text1">Text 1</p>
+                    <br />
+                    <br />
+                    <p class="text text2">Text 2</p>
+                    <br />
+                    <br />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          ))}
+
+          <Modal
+            open={this.state.isOpen}
+            onClose={this.handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+          >
+            <img
+              style={{
+                width: 500,
+                marginTop: "10%",
+                marginLeft: "30%",
+              }}
+              src={this.state.dialogueImage}
+              alt={this.state.dialogueIndex}
+            />
+          </Modal>
+        </div>
+        <TablePagination
+          rowsPerPageOptions={[5]}
+          component="div"
+          count={this.state.images.length}
+          rowsPerPage={this.state.rowsPerPage}
+          page={this.state.page}
+          onChangePage={this.handleChangePage}
+        />
+      </div>
     );
   }
 }
