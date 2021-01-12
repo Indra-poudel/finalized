@@ -1,0 +1,337 @@
+/* Screen 1 Styling */
+
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: white;
+}
+
+img {
+  object-fit: contain;
+}
+
+a {
+  text-decoration: none;
+}
+
+.screen1 {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.btns__container {
+  margin-top: 10rem;
+}
+
+#screen1__btn1,
+#screen1__btn2 {
+  margin: 0 1.5rem;
+}
+
+/* Screen 2 */
+
+.image__container {
+  border-radius: 5px;
+  background-color: rgb(248, 248, 248);
+  margin-bottom: 1rem !important;
+  box-shadow: 3px 3px 8px -2px rgba(0, 0, 0, 0.15),
+    -1px -1px 8px -2px rgba(0, 0, 0, 0.15);
+}
+
+.texts__section {
+  text-align: right;
+  align-items: right;
+  padding-right: 2.5rem;
+}
+
+/* Screen 3 */
+
+.screen3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen3__btnsSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 1.5rem 0 5rem 60%;
+}
+
+.lowerContent__section1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screen3__image {
+  width: 500px;
+  border: 2px solid rgb(173, 173, 173);
+}
+
+.section__taglines {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.section1__btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.greenBtn {
+  color: white !important;
+  background-color: green !important;
+  margin-right: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  border: 1px solid rgb(97, 97, 97) !important;
+}
+
+.redBtn {
+  color: white !important;
+  background-color: red !important;
+  margin-left: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  border: 1px solid rgb(97, 97, 97) !important;
+}
+
+/* Section 2 */
+
+.lowerContent__section2 {
+  margin-top: 10rem;
+}
+
+/* Section 3 */
+
+.lowerContent__section3 {
+  margin-top: 10rem;
+}
+
+.section3__inpusFeild {
+  border: 1px solid rgb(158, 158, 158);
+  width: 12rem;
+  margin: 1rem auto 0rem;
+  display: flex;
+  border-radius: 3.5px;
+  overflow: hidden;
+}
+
+.section3__inpusFeild > input {
+  width: 5rem;
+  height: 100%;
+  flex: 1;
+  height: 2.2rem;
+  outline-width: 0;
+  border: none;
+  font-size: 18px;
+  padding: 0 1rem;
+}
+
+.section3__inpusFeild > button {
+  border-left: 1px solid #282c34;
+  border-radius: 0;
+  padding: 0.5rem 1rem;
+  width: 25%;
+}
+
+/* Section 4 */
+
+.lowerContent__section4 {
+  margin-top: 10rem;
+}
+
+/* Section 4 */
+
+.lowerContent__section5 {
+  margin-top: 10rem;
+}
+
+.multiple__imagesCont {
+  display: flex;
+  flex-direction: row;
+  height: 18rem;
+  width: 31.25rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 1rem 1rem 1rem 0.35rem;
+  background-color: #dfdfdf;
+}
+
+.multiple__imagesCont > img {
+  margin-right: 2rem;
+  margin-left: 0.25rem;
+  width: 100% !important;
+}
+
+.lowerContent__section6 {
+  margin-top: 10rem;
+}
+
+.submit__btn {
+  background-color: green !important;
+  color: white !important;
+  margin-top: 7rem !important;
+  margin-bottom: 5rem !important;
+}
+
+.lowerContent__section1,
+.lowerContent__section2,
+.lowerContent__section3,
+.lowerContent__section4,
+.lowerContent__sectionNew,
+.lowerContent__section6 {
+  background-color: #f8f8f8;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 0rem 3.5rem 2rem;
+  border-radius: 4px;
+  box-shadow: 3px 3px 8px -2px rgba(0, 0, 0, 0.15),
+    -1px -1px 8px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* OverWritting all the stuff about special 5th section */
+
+.lowerContent__section5 > .multiple__imagesCont {
+  margin: 0 auto;
+}
+
+/* Slider Stylings */
+
+.slider__tagline {
+  margin-top: 10rem;
+}
+
+.slider {
+  width: 505;
+  height: 25rem;
+  background-color: #f8f8f8;
+  border: 1px solid rgb(228, 228, 228);
+  box-shadow: 3px 3px 8px -2px rgba(0, 0, 0, 0.15),
+    -1px -1px 8px -2px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+}
+
+.slider > .slider__content {
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 2.5px;
+  overflow: hidden;
+  margin: 0 1rem;
+  flex: 0.92;
+}
+
+.slider > .slider__content > img {
+  width: 100%;
+  height: 100%;
+}
+
+.sliderBtn {
+  padding: 0.25rem 0.3rem;
+  flex: 0.04;
+}
+
+/* Alert Styling */
+
+.alert__container {
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  background-color: rgba(65, 105, 225, 0.42);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.alert {
+  border: 1px solid #ccc;
+  position: absolute;
+  top: 1rem;
+  right: 35%;
+  background-color: #f8f8f8;
+  z-index: 10;
+  padding: 0rem 1.5rem 1rem;
+  border-radius: 4px;
+  box-shadow: 3px 3px 8px -1.5px rgba(0, 0, 0, 0.12),
+    -1px -1px 8px -1.5px rgba(0, 0, 0, 0.12);
+}
+
+.alert > .alert__controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+.alert > h3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 19px;
+}
+
+.alert > .alert__controls > a {
+  align-items: center;
+  color: #363636;
+  justify-content: center;
+  display: flex;
+}
+
+.alert > .alert__controls > a > svg {
+  color: red;
+  font-size: 18px;
+  align-items: center;
+  margin-left: 0.25rem;
+}
+
+.alert__controls > .alert__close {
+  color: green !important;
+  cursor: pointer;
+}
+
+/* ..................... */
+
+.lowerContent__sectionNew {
+  margin-top: 10rem;
+  width: 38rem;
+  height: 31.5rem;
+  margin-left: -4rem;
+}
+
+.section__taglineSlider {
+  margin-bottom: 0.75rem !important;
+}
+
+.scrollable__div {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 82.5%;
+  padding: 1rem;
+}
+
+.scrollable__div > img {
+  width: 95%;
+}
+
+.imageFeedbackSec {
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+}
